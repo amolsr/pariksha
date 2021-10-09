@@ -1,4 +1,4 @@
-name: Deploy Site
+name: Heroku
 
 on:
   workflow_dispatch:

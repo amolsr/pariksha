@@ -1,0 +1,90 @@
+export const signup = (user) => {
+  return fetch(process.env.REACT_APP_API_URL + `/register`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
+export const signin = (user) => {
+  return fetch(process.env.REACT_APP_API_URL + `/login`, {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  })
+    .then((response) => {
+      return response.json();
+    })
+    .catch((err) => console.log(err));
+};
+
+export const authenticate = (data, next) => {
+  if (typeof window !== "undefined") {
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("name", data.user.name);
+    localStorage.setItem("email", data.user.email);
+    next();
+  }
+};
+
+export const signout = (next) => {
+  if (typeof window !== "undefined") {
+    localStorage.removeItem("token");
+    next();
+
+    return fetch(process.env.REACT_APP_API_URL + `/logout`, {
+      method: "GET",
+    })
+      .then((response) => console.log("logout success"))
+      .catch((err) => console.log(err));
+  }
+};
+
+export const isAuthenticated = () => {
+  if (typeof window == "undefined") {
+    return false;
+  }
+  if (localStorage.getItem("token")) {
+    return localStorage.getItem("token")
+    // try {
+    //   var data = await fetch(
+    //     process.env.REACT_APP_API_URL + `/student/`,
+    //     {
+    //       method: "GET",
+    //       headers: {
+    //         Accept: "application/json",
+    //         "Content-Type": "application/json",
+    //         authorization: "Bearer " + localStorage.getItem("token"),
+    //       },
+    //     }
+    //   )
+    //     .then((response) => {
+    //       console.log(response)
+    //       return response.json();
+    //     })
+    //   if (data.success === true) {
+    //     return localStorage.getItem("token")
+    //   } else {
+    //     localStorage.removeItem("token")
+    //     return false
+    //   }
+    // } catch (error) {
+    //   localStorage.removeItem("token")
+    //   return false
+    // }
+  } else {
+    localStorage.removeItem("token")
+    return false;
+  }
+};
+

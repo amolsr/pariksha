@@ -1,0 +1,38 @@
+{
+  "files": {
+    "main.css": "/pariksha-frontend/static/css/main.19eb7f30.chunk.css",
+    "main.js": "/pariksha-frontend/static/js/main.25686cfd.chunk.js",
+    "main.js.map": "/pariksha-frontend/static/js/main.25686cfd.chunk.js.map",
+    "runtime-main.js": "/pariksha-frontend/static/js/runtime-main.9d8daab7.js",
+    "runtime-main.js.map": "/pariksha-frontend/static/js/runtime-main.9d8daab7.js.map",
+    "static/css/2.f4c56af9.chunk.css": "/pariksha-frontend/static/css/2.f4c56af9.chunk.css",
+    "static/js/2.764d8c17.chunk.js": "/pariksha-frontend/static/js/2.764d8c17.chunk.js",
+    "static/js/2.764d8c17.chunk.js.map": "/pariksha-frontend/static/js/2.764d8c17.chunk.js.map",
+    "static/js/3.f1592027.chunk.js": "/pariksha-frontend/static/js/3.f1592027.chunk.js",
+    "static/js/3.f1592027.chunk.js.map": "/pariksha-frontend/static/js/3.f1592027.chunk.js.map",
+    "static/js/4.5c815b24.chunk.js": "/pariksha-frontend/static/js/4.5c815b24.chunk.js",
+    "static/js/4.5c815b24.chunk.js.map": "/pariksha-frontend/static/js/4.5c815b24.chunk.js.map",
+    "static/js/5.a00cb6be.chunk.js": "/pariksha-frontend/static/js/5.a00cb6be.chunk.js",
+    "static/js/5.a00cb6be.chunk.js.map": "/pariksha-frontend/static/js/5.a00cb6be.chunk.js.map",
+    "index.html": "/pariksha-frontend/index.html",
+    "static/css/2.f4c56af9.chunk.css.map": "/pariksha-frontend/static/css/2.f4c56af9.chunk.css.map",
+    "static/css/main.19eb7f30.chunk.css.map": "/pariksha-frontend/static/css/main.19eb7f30.chunk.css.map",
+    "static/js/2.764d8c17.chunk.js.LICENSE.txt": "/pariksha-frontend/static/js/2.764d8c17.chunk.js.LICENSE.txt",
+    "static/js/3.f1592027.chunk.js.LICENSE.txt": "/pariksha-frontend/static/js/3.f1592027.chunk.js.LICENSE.txt",
+    "static/js/4.5c815b24.chunk.js.LICENSE.txt": "/pariksha-frontend/static/js/4.5c815b24.chunk.js.LICENSE.txt",
+    "static/js/5.a00cb6be.chunk.js.LICENSE.txt": "/pariksha-frontend/static/js/5.a00cb6be.chunk.js.LICENSE.txt",
+    "static/media/Group 72.d9879024.svg": "/pariksha-frontend/static/media/Group 72.d9879024.svg",
+    "static/media/Mask Group 4.551d728b.png": "/pariksha-frontend/static/media/Mask Group 4.551d728b.png",
+    "static/media/Mask Group 5.a81ed2d2.png": "/pariksha-frontend/static/media/Mask Group 5.a81ed2d2.png",
+    "static/media/App.css": "/pariksha-frontend/static/media/background.ac62bc4b.svg",
+    "static/media/blockchainIcon.9bbbef57.png": "/pariksha-frontend/static/media/blockchainIcon.9bbbef57.png",
+    "static/media/brllogo.9bbbef57.png": "/pariksha-frontend/static/media/brllogo.9bbbef57.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.9d8daab7.js",
+    "static/css/2.f4c56af9.chunk.css",
+    "static/js/2.764d8c17.chunk.js",
+    "static/css/main.19eb7f30.chunk.css",
+    "static/js/main.25686cfd.chunk.js"
+  ]
+}

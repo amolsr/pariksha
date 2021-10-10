@@ -30,6 +30,6 @@ router.get("/", (req, res) => {
 
 router.get("/tests", testController.getTest)
 router.get("/test/:id", testController.getTest)
-router.get("/test-token/:id", authController.selectTest)
+router.get("/test-token/:id", checkStartTime, authController.selectTest)
 
 module.exports = router;

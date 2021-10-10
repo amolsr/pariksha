@@ -104,7 +104,8 @@ exports.authTest = async (req, res, next) => {
 exports.checkStartTime = (req, res, next) => {
   var d = new Date();
   var c = d.getTime();
-  const test = Test.findById(req.test).then(result => {
+  var testId = req.test ? req.test : req.params.id;
+  const test = Test.findById(testId).then(result => {
     console.log(result);
     if (c >= result.startTime && c <= result.endTime) {
       req.testDetails = result;

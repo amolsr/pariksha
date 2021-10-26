@@ -264,7 +264,7 @@ const Questions = (props) => {
       <div className="col-md-12">
         <h5 style={{ display: "inline-block" }} className="py-md-3">
           {index + 1}. &nbsp;
-          {data[j].question}
+          {data[j].question} <br />
           {data[j].QuestionPic && data[j].QuestionPic !== "" ? <img src={data[j].QuestionPic} alt="question" /> : <></>}
         </h5>
         <input type="text" className="d-none" value={id} readonly />
@@ -375,7 +375,7 @@ const Questions = (props) => {
     return (
       <>
         <Paper className="col-md-8 mx-4 p-5">
-          <div className="row" style={{ height: "60vh" }}>
+          <div className="row" style={{ height: "60vh", overflow: "scroll" }}>
             {displayQuestion(index)}
           </div>
           <div className="row">

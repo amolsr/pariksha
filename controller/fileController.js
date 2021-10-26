@@ -6,16 +6,16 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 AWS.config.update({
-  secretAccessKey: process.env.secretAccessKey,
-  accessKeyId: process.env.accessKeyId,
-  region: process.env.region,
+  secretAccessKey: process.env.SECRET_ACCESS_KEY,
+  accessKeyId: process.env.ACCESS_KEY_ID,
+  region: process.env.REGION,
 });
 
 const s3 = new AWS.S3();
 
 const awsStorage = multerS3({
   s3: s3,
-  bucket: process.env.bucket,
+  bucket: process.env.BUCKET,
   ACL: "public-read",
   key: function (req, file, cb) {
     cb(null, Date.now().toString() + file.originalname);

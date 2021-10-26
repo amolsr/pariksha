@@ -12,6 +12,8 @@ const storage = multer.memoryStorage()
 const upload = multer({ storage: storage })
 const UtilController = require("../controller/utilController");
 const QuestionController = require("../controller/questionController");
+const fileController = require("../controller/fileController");
+
 
 router.post("/check-answers", questionController.postCheckAnswers);
 
@@ -20,7 +22,7 @@ router.get("/get-result/:id", questionController.getTestResult);
 // @route   POST /add-question
 // @desc    Add questions to database
 // @access  Public
-router.post("/add-question", questionController.addQuestions);
+router.post("/add-question", fileController.uploadImage.single('image'), questionController.addQuestions);
 router.post("/upload-questions", upload.single("file"), async (req, res, next) => {
     const file = req.file;
     if (!file) {
@@ -43,7 +45,7 @@ router.get("/questions", questionController.getQuestions);
 router.delete("/question/:id", questionController.deleteQuestion);
 router.put("/question/:id", questionController.updateQuestion);
 router.get("/category", questionController.getCategory);
-router.post("/test",
+router.post("/test", fileController.uploadImage.single('image'),
     [
         body("description", "Description is required").isString().exists(),
         body("mandatoryCategory", "MandatoryCategory is required").isArray().isLength({ min: 1 }),

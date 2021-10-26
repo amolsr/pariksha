@@ -29,6 +29,9 @@ const QuestionSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  QuestionPic: {
+    type: String
+  }
 });
 
 module.exports = Question = mongoose.model("Question", QuestionSchema);

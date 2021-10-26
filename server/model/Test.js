@@ -9,7 +9,8 @@ const TestSchema = new mongoose.Schema({
   optionalCategory: [String],
   startTime: Number,
   endTime: Number,
-  description: String
+  description: String,
+  testUrl: String
 },
   { timestamps: true });
 

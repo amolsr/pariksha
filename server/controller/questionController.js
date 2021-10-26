@@ -116,6 +116,7 @@ exports.getQuestionsForTest = async (req, res, next) => {
               $project: {
                 _id: 1,
                 question: 1,
+                QuestionPic: 1,
                 options: ["$one", "$two", "$three", "$four"],
               },
             },
@@ -141,6 +142,7 @@ exports.getQuestionsForTest = async (req, res, next) => {
             $project: {
               _id: 1,
               question: 1,
+              QuestionPic: 1,
               options: ["$one", "$two", "$three", "$four"],
             },
           },
@@ -156,6 +158,7 @@ exports.getQuestionsForTest = async (req, res, next) => {
           $project: {
             _id: 1,
             question: 1,
+            QuestionPic: 1,
             options: ["$one", "$two", "$three", "$four"],
           },
         },

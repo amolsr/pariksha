@@ -265,6 +265,7 @@ const Questions = (props) => {
         <h5 style={{ display: "inline-block" }} className="py-md-3">
           {index + 1}. &nbsp;
           {data[j].question}
+          {data[j].QuestionPic && data[j].QuestionPic !== "" ? <img src={data[j].QuestionPic} alt="question" /> : <></>}
         </h5>
         <input type="text" className="d-none" value={id} readonly />
         <ul style={{ listStyle: "none" }}>{options}</ul>
@@ -289,36 +290,6 @@ const Questions = (props) => {
       </>
     );
   };
-
-  // const backMessage = () => {
-  //   return (
-  //     <>
-  //       <Modal show={show} onHide={handleClose} centered>
-  //         <Modal.Header closeButton>
-  //           <Modal.Title>Test Portal</Modal.Title>
-  //         </Modal.Header>
-  //         <Modal.Body>You will be Loggedout</Modal.Body>
-  //         <Modal.Footer>
-  //           <Button variant="outlined" onClick={handleClose}>
-  //             End Test
-  //           </Button>
-  //           <Button variant="outlined" onClick={handleClose}>
-  //             Close
-  //           </Button>
-  //         </Modal.Footer>
-  //       </Modal>
-  //     </>
-  //   );
-  // };
-  // window.onbeforeunload = (event) => {
-  //   const e = event || window.event;
-  //   // Cancel the event
-  //   e.preventDefault();
-  //   if (e) {
-  //     e.returnValue = ''; // Legacy method for cross browser support
-  //   }
-  //   return ''; // Legacy method for cross browser support
-  // };
 
   const showConfirmation = () => {
     return (
@@ -516,11 +487,6 @@ const Questions = (props) => {
   );
 };
 
-// NavigationBlocker.propTypes = {
-//   navigationBlocked: PropTypes.bool.isRequired,
-// }
-
-// export default NavigationBlocker;
 export default withRouter(Questions);
 
 function cleanup() {

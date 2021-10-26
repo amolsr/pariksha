@@ -1,7 +1,4 @@
 # HU-Pariksha
-
-![frontend](https://github.com/amolsr/pariksha/workflows/github-pages.yml/badge.svg?branch=main)
-
 ------------
 
 ## Postman Collection

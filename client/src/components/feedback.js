@@ -86,7 +86,7 @@ export default class feedback extends Component {
   render() {
     return (
       <>
-        <NavBar />
+        <NavBar>
         <Grid container alignContent="center" justifyContent="center">
           <Grid item component={Paper} style={{ padding: "2rem", marginTop: "1.5rem", textAlign: "center" }}>
             <h1>FEEDBACK</h1>
@@ -170,6 +170,7 @@ export default class feedback extends Component {
             </div>
           </Grid>
         </Grid>
+        </NavBar>
         {this.performRedirect()}
       </>
     );

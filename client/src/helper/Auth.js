@@ -33,6 +33,9 @@ export const authenticate = (data, next) => {
     localStorage.setItem("token", data.token);
     localStorage.setItem("name", data.user.name);
     localStorage.setItem("email", data.user.email);
+    if(data.user.profileUrl !== null && data.user.profileUrl !== "") {
+      localStorage.setItem("profileUrl", data.user.profileUrl);
+    }
     next();
   }
 };

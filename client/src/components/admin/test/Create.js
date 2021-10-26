@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap',
+        justifyContent: "center",
         '& > *': {
             margin: theme.spacing(1, 3),
         },
@@ -53,6 +54,7 @@ function getStyles(name, personName, theme) {
 export default function BasicTextFields() {
     const classes = useStyles();
     const [state, setState] = React.useState({
+        selectedFile: "",
         title: "",
         description: "",
         category: [],
@@ -83,19 +85,35 @@ export default function BasicTextFields() {
         setState({ ...state, endTime: event.target.value });
     };
 
-    const { title, description, category, selectedMandatoryCategory, selectedOptionalCategory, startTime, endTime } = state;
+    const { title, description, category, selectedMandatoryCategory, selectedOptionalCategory, startTime, endTime, selectedFile } = state;
     const theme = useTheme();
     const handleSubmit = () => {
-        addTest({ title, description, startTime: (new Date(startTime)).getTime(), endTime: (new Date(endTime)).getTime(), mandatoryCategory: selectedMandatoryCategory, optionalCategory: selectedOptionalCategory })
+        let formData = new FormData();
+        if (selectedFile !== "") formData.append('image', selectedFile);
+        formData.append('title', title);
+        formData.append('description', description);
+        formData.append('startTime', (new Date(startTime)).getTime());
+        formData.append('endTime', (new Date(endTime)).getTime());
+        selectedMandatoryCategory.forEach(item => formData.append('mandatoryCategory', item))
+        selectedOptionalCategory.forEach(item => formData.append('optionalCategory', item))
+        addTest(formData)
             .then(res => {
                 if (res.success === true) {
                     toast.success("Test Created Successfully!!")
                 } else {
-                    throw new Error(res.errors !== undefined? res.errors[0].msg : res.msg)
+                    throw new Error(res.errors !== undefined ? res.errors[0].msg : res.msg)
                 }
             })
             .catch(err => toast.error(err.message))
     }
+
+    const fileSelectedHandler = (event) => {
+        setState({
+            ...state,
+            selectedFile: event.target.files[0]
+        })
+    }
+
     useEffect(() => {
         async function initials() {
             getCategory()
@@ -126,12 +144,19 @@ export default function BasicTextFields() {
                         id="outlined-full-width"
                         label="Title"
                         placeholder="Title for the Test"
-                        fullWidth
                         value={title}
                         name="title"
+                        style={{ flexGrow: 1 }}
                         onChange={handleChange}
                         margin="normal"
                     />
+                    <label htmlFor="contained-button-file" style={{ margin: ".5rem 0", alignSelf: "end" }}>
+                        <input id="contained-button-file" type="file" style={{ display: "none" }} onChange={fileSelectedHandler} />
+                        <Button variant="contained" component="span" style={{ marginRight: "1rem" }}>
+                            {selectedFile === "" ? "Image" : "Selected"}
+                        </Button>
+                    </label>
+
                     <TextField
                         id="outlined-full-width"
                         label="Description"
@@ -222,7 +247,7 @@ export default function BasicTextFields() {
                             fullWidth
                         />
                     </FormControl>
-                    <FormControl className={classes.formControl} gutterbottom>
+                    <FormControl className={classes.formControl} gutterbottom="true">
                         <Button variant="contained" color="primary" align="center" onClick={handleSubmit} style={{ margin: "1rem 0" }}> Submit </Button>
                     </FormControl>
 

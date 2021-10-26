@@ -123,10 +123,9 @@ export const addQuestion = (question) => {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json",
         authorization: "Bearer " + token,
       },
-      body: JSON.stringify(question)
+      body: question
     }
   )
     .then((response) => {
@@ -202,10 +201,9 @@ export const addTest = (test) => {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/json",
         authorization: "Bearer " + token,
       },
-      body: JSON.stringify(test)
+      body: test
     }
   )
     .then((response) => {

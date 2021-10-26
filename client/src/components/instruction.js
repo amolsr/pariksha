@@ -152,7 +152,7 @@ const Instruction = () => {
   const information = () => {
     return (
       <div>
-        <NavBar />
+        <NavBar>
         <Container>
           <Box my={4}>
             <Grid
@@ -289,6 +289,7 @@ const Instruction = () => {
             </Grid>
           </Box>
         </Container>
+        </NavBar>
       </div>
     );
   };

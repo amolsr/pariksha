@@ -120,16 +120,6 @@ input[type="number"] {
   box-shadow: 0 4px 8px 0 #fff, 0 6px 20px 0 #000;
 }
 
-.navRoot {
-  position: fixed;
-  max-width: 50px;
-  min-width: 50px;
-  width: 50px;
-  background-color: #000;
-  height: 100%;
-  z-index:100
-}
-
 /* .navRoot:hover {
   max-width: 175px;
   min-width: 175px;
@@ -137,7 +127,7 @@ input[type="number"] {
 } */
 
 .hashedinLogo {
-    margin: -1.5rem;
+    margin: -1rem;
     bottom: 4.5rem;
     font-size: large;
     position: fixed;

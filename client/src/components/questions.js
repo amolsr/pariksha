@@ -500,14 +500,15 @@ const Questions = (props) => {
       {errorMessage()}
       <section className="student" style={{ height: "100vh", margin: "0" }}>
         <div>
-          <NavBar />
-          <div
-            className="container"
-            style={{ height: "70vh", marginTop: "3vh" }}
-          >
-            <div className="row h-100">{questionPaper()}</div>
-            <Webcam id="cam" style={{ display: "none" }} />
-          </div>
+          <NavBar >
+            <div
+              className="container"
+              style={{ height: "70vh", marginTop: "3vh" }}
+            >
+              <div className="row h-100">{questionPaper()}</div>
+              <Webcam id="cam" style={{ display: "none" }} />
+            </div>
+          </NavBar>
         </div>
       </section>
       {showConfirmation()}

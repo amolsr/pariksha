@@ -2,7 +2,7 @@
   "name": "pariksha",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://amolsr.github.io/pariksha/",
+  "homepage": "https://amolsr.github.io/pariksha-frontend/",
   "dependencies": {
     "@material-ui/core": "^4.11.4",
     "@material-ui/icons": "^4.11.2",

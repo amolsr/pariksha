@@ -33,6 +33,7 @@ export default function BasicTextFields() {
     const classes = useStyles();
     const [state, setState] = React.useState({
         selectedFile: "",
+        selectedImageFile: "",
         question: "",
         one: "",
         two: "",
@@ -48,7 +49,7 @@ export default function BasicTextFields() {
         setState({ ...state, [event.target.name]: event.target.value });
     };
 
-    const { question, one, two, three, four, correct, category, selectedFile, filename } = state;
+    const { question, one, two, three, four, correct, category, selectedFile, selectedImageFile, filename } = state;
 
     const fileSelectedHandler = (event) => {
         setState({
@@ -58,14 +59,31 @@ export default function BasicTextFields() {
         })
     }
 
+    const fileSelectedImageHandler = (event) => {
+        setState({
+            ...state,
+            selectedImageFile: event.target.files[0],
+        })
+    }
+
 
     const handleSubmit = () => {
-        addQuestion({ question, one, two, three, four, correct, category })
+        let formData = new FormData();
+        if (selectedImageFile !== "") formData.append('image', selectedImageFile);
+        formData.append('question', question);
+        formData.append('one', one);
+        formData.append('two', two);
+        formData.append('three', three);
+        formData.append('four', four);
+        formData.append('correct', correct);
+        formData.append('category', category);
+        addQuestion(formData)
             .then(res => {
                 if (res.success === true) {
                     toast.success("Question Saved Successfully!!")
                     setState({
                         question: "",
+                        selectedImageFile: "",
                         one: "",
                         two: "",
                         three: "",
@@ -143,12 +161,18 @@ export default function BasicTextFields() {
                             id="outlined-full-width"
                             label="Question"
                             placeholder="Question"
-                            fullWidth
+                            style={{ flexGrow: 1 }}
                             value={question}
                             name="question"
                             onChange={handleChange}
                             margin="normal"
                         />
+                        <label htmlFor="button-file" style={{ margin: ".5rem 0", alignSelf: "end" }}>
+                            <input id="button-file" type="file" style={{ display: "none" }} onChange={fileSelectedImageHandler} />
+                            <Button variant="contained" component="span" style={{ marginRight: "1rem" }}>
+                                {selectedImageFile === "" ? "Image" : "Selected"}
+                            </Button>
+                        </label>
                         <TextField
                             id="outlined-full-width"
                             label="Option 1"
@@ -214,7 +238,7 @@ export default function BasicTextFields() {
                             onChange={handleChange}
                             margin="normal"
                         />
-                        <FormControl className={classes.formControl} gutterbottom>
+                        <FormControl className={classes.formControl} gutterbottom="true">
                             <Button variant="contained" color="primary" align="center" onClick={handleSubmit} style={{ margin: "1rem 0" }}> Submit </Button>
                         </FormControl>
 

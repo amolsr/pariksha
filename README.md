@@ -9,4 +9,5 @@
 |  Username | Name |
 | ------------ | ------------ |
 |  <a href="https://github.com/amolsr">@amolsr</a> | Amol Saini  |
-|   |   |
+| <a href="https://github.com/ripu502">@ripu502</a>  | Ripudaman Singh  |
+| | |

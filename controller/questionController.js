@@ -198,6 +198,11 @@ exports.getQuestionsForTest = async (req, res, next) => {
 
 // to add questions
 exports.addQuestions = async (req, res) => {
+  let QuestionPic = ""
+  if(req.file)
+  {
+    QuestionPic = req.file.location
+  }
   const { question, one, two, three, four, correct, category } = req.body;
 
   try {
@@ -208,7 +213,8 @@ exports.addQuestions = async (req, res) => {
       three,
       four,
       correct,
-      category
+      category,
+      QuestionPic
     });
 
     await new_question.save();

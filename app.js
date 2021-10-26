@@ -26,7 +26,7 @@ mongoose
     useNewUrlParser: true,
     useCreateIndex: true,
   })
-  .then(() => console.log("MongoDB Connected.."))
+  .then(() => console.log("MongoDB Connected..."))
   .catch((err) => console.log(err));
 
 app.get("/", (req, res) => {

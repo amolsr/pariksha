@@ -2,12 +2,17 @@ const Test = require("../model/Test");
 const { getISTfromUTC, getDurationFromTime } = require("./utilController")
 
 exports.addTest = async (req, res) => {
+  let testUrl = "";
+  if(req.file)
+  {
+    testUrl = req.file.location
+  }
   const { startTime, endTime, title, mandatoryCategory, optionalCategory, description } = req.body;
   if (endTime - startTime >= 86400000 || endTime <= startTime) {
     return res.status(422).json({ success: false, msg: "Time interval is invalid" })
   }
   try {
-    var test = { startTime, endTime, title, mandatoryCategory, optionalCategory, description }
+    var test = { startTime, endTime, title, mandatoryCategory, optionalCategory, description, testUrl }
     // var d = new Date(test.startTime);
     // var c = d.getTime()
     // var st = (test.startTime.getTime());

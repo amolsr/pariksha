@@ -16,6 +16,9 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Set Node Options (Fix for OpenSSL Issue)
+        run: echo "NODE_OPTIONS=--openssl-legacy-provider" >> $GITHUB_ENV
+
       - name: Install Packages
         run: npm install
 

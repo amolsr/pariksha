@@ -15,6 +15,11 @@ jobs:
         uses: actions/checkout@v4.2.2
         with:
           persist-credentials: false
+  
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' # Use Node.js 16 LTS
 
       - name: Set Node Options (Fix for OpenSSL Issue)
         run: echo "NODE_OPTIONS=--openssl-legacy-provider" >> $GITHUB_ENV

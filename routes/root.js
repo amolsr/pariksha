@@ -54,7 +54,7 @@ router.get("/time", (req, res) => {
 });
 
 // !TODO refactoring is needed
-router.post("/api/v1/auth/google", async (req, res) => {
+router.post("/v1/auth/google", async (req, res) => {
   const { token } = req.body
   const ticket = await client.verifyIdToken({
     idToken: token,

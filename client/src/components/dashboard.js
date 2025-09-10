@@ -76,7 +76,7 @@ export default function Dashboard(props) {
                                   component="img"
                                   alt="Contemplative Reptile"
                                   height="140"
-                                  image={item.testUrl ? item.testUrl : "http://validata-software.com/images/blog/wp-content/uploads/2017/02/service-automation_banner.png"}
+                                  image={item.testUrl ? item.testUrl : "https://png.pngtree.com/background/20210710/original/pngtree-recruitment-background-banner-picture-image_1037995.jpg"}
                                   title="Contemplative Reptile"
                                 />
                                 <CardContent>

@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/pariksha/static/css/main.9484c408.chunk.css",
-    "main.js": "/pariksha/static/js/main.655ab639.chunk.js",
-    "main.js.map": "/pariksha/static/js/main.655ab639.chunk.js.map",
-    "runtime-main.js": "/pariksha/static/js/runtime-main.2c2d3cbd.js",
-    "runtime-main.js.map": "/pariksha/static/js/runtime-main.2c2d3cbd.js.map",
+    "main.js": "/pariksha/static/js/main.1115d636.chunk.js",
+    "main.js.map": "/pariksha/static/js/main.1115d636.chunk.js.map",
+    "runtime-main.js": "/pariksha/static/js/runtime-main.6f2df793.js",
+    "runtime-main.js.map": "/pariksha/static/js/runtime-main.6f2df793.js.map",
     "static/css/2.a00c7f48.chunk.css": "/pariksha/static/css/2.a00c7f48.chunk.css",
-    "static/js/2.41614232.chunk.js": "/pariksha/static/js/2.41614232.chunk.js",
-    "static/js/2.41614232.chunk.js.map": "/pariksha/static/js/2.41614232.chunk.js.map",
-    "static/js/3.9be4545f.chunk.js": "/pariksha/static/js/3.9be4545f.chunk.js",
-    "static/js/3.9be4545f.chunk.js.map": "/pariksha/static/js/3.9be4545f.chunk.js.map",
+    "static/js/2.09e0e3f5.chunk.js": "/pariksha/static/js/2.09e0e3f5.chunk.js",
+    "static/js/2.09e0e3f5.chunk.js.map": "/pariksha/static/js/2.09e0e3f5.chunk.js.map",
+    "static/js/3.dbbd6ea5.chunk.js": "/pariksha/static/js/3.dbbd6ea5.chunk.js",
+    "static/js/3.dbbd6ea5.chunk.js.map": "/pariksha/static/js/3.dbbd6ea5.chunk.js.map",
     "static/js/4.c28c90d0.chunk.js": "/pariksha/static/js/4.c28c90d0.chunk.js",
     "static/js/4.c28c90d0.chunk.js.map": "/pariksha/static/js/4.c28c90d0.chunk.js.map",
     "static/js/5.bf28480e.chunk.js": "/pariksha/static/js/5.bf28480e.chunk.js",
@@ -17,8 +17,8 @@
     "index.html": "/pariksha/index.html",
     "static/css/2.a00c7f48.chunk.css.map": "/pariksha/static/css/2.a00c7f48.chunk.css.map",
     "static/css/main.9484c408.chunk.css.map": "/pariksha/static/css/main.9484c408.chunk.css.map",
-    "static/js/2.41614232.chunk.js.LICENSE.txt": "/pariksha/static/js/2.41614232.chunk.js.LICENSE.txt",
-    "static/js/3.9be4545f.chunk.js.LICENSE.txt": "/pariksha/static/js/3.9be4545f.chunk.js.LICENSE.txt",
+    "static/js/2.09e0e3f5.chunk.js.LICENSE.txt": "/pariksha/static/js/2.09e0e3f5.chunk.js.LICENSE.txt",
+    "static/js/3.dbbd6ea5.chunk.js.LICENSE.txt": "/pariksha/static/js/3.dbbd6ea5.chunk.js.LICENSE.txt",
     "static/js/4.c28c90d0.chunk.js.LICENSE.txt": "/pariksha/static/js/4.c28c90d0.chunk.js.LICENSE.txt",
     "static/js/5.bf28480e.chunk.js.LICENSE.txt": "/pariksha/static/js/5.bf28480e.chunk.js.LICENSE.txt",
     "static/media/Group 72.d9879024.svg": "/pariksha/static/media/Group 72.d9879024.svg",
@@ -29,10 +29,10 @@
     "static/media/brllogo.9bbbef57.png": "/pariksha/static/media/brllogo.9bbbef57.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.2c2d3cbd.js",
+    "static/js/runtime-main.6f2df793.js",
     "static/css/2.a00c7f48.chunk.css",
-    "static/js/2.41614232.chunk.js",
+    "static/js/2.09e0e3f5.chunk.js",
     "static/css/main.9484c408.chunk.css",
-    "static/js/main.655ab639.chunk.js"
+    "static/js/main.1115d636.chunk.js"
   ]
 }

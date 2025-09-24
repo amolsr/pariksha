@@ -42,6 +42,7 @@ const Instruction = () => {
     isCameraOne: false,
     error: "",
     lang: JSON.parse(localStorage.getItem("test")).optionalCategory.length > 0 ? JSON.parse(localStorage.getItem("test")).optionalCategory[0] : null,
+    showCameraTest: false,
   });
 
   const {
@@ -56,6 +57,7 @@ const Instruction = () => {
     startTime,
     error,
     lang,
+    showCameraTest,
   } = values;
 
   const token = isAuthenticated();
@@ -64,7 +66,7 @@ const Instruction = () => {
 
   const handleRedirect = async (event) => {
     if (isCameraOne === false) {
-      setValues({ ...values, error: "Please Turn On Camera!" });
+      setValues({ ...values, error: "Please Turn On Camera!", showCameraTest: true });
       document.getElementById("errorText").classList.add("d-block");
     } else {
       setValues({ ...values, error: false, loading: true });
@@ -126,64 +128,64 @@ const Instruction = () => {
     }));
   };
 
-  useEffect(() => {
-    const initializeWebcam = async () => {
-      try {
-        const token = await isAuthenticated();
-        if (!token) {
-          setValues(prev => ({ ...prev, error: "Authentication required" }));
-          return;
-        }
-
-        // Connect to WebSocket
-        await webSocketService.connect(token);
-        
-        // Start video streaming
-        const stream = await webSocketService.startVideoStreaming();
-        
-        setValues(prev => ({
-          ...prev,
-          isCameraOne: true,
-        }));
-
-        // Set video source for display
-        if (document.getElementById("cam")) {
-          document.getElementById("cam").srcObject = stream;
-        }
-
-        // Send stream info
-        webSocketService.sendStreamUpdate({
-          testId: id,
-          status: 'preparing',
-          stage: 'instructions'
-        });
-
-      } catch (error) {
-        console.error("Webcam initialization error:", error);
-        let errorMessage = "Camera access denied or not available";
-        
-        if (error.message.includes('Camera access denied')) {
-          errorMessage = "Camera access denied. Please allow camera permissions and refresh the page.";
-        } else if (error.message.includes('No camera found')) {
-          errorMessage = "No camera found. Please connect a camera and try again.";
-        } else if (error.message.includes('Camera is already in use')) {
-          errorMessage = "Camera is already in use by another application. Please close other applications using the camera.";
-        } else if (error.message.includes('HTTPS or localhost')) {
-          errorMessage = "Camera access requires HTTPS or localhost. Please use a secure connection.";
-        } else if (error.message.includes('not supported')) {
-          errorMessage = "Camera access not supported in this browser. Please use a modern browser.";
-        } else if (error.message.includes('WebSocket not connected')) {
-          errorMessage = "Cannot connect to server. Please check your internet connection and try again.";
-        }
-        
-        setValues(prev => ({
-          ...prev,
-          error: errorMessage,
-          isCameraOne: false,
-        }));
+  const initializeWebcam = async () => {
+    try {
+      const token = await isAuthenticated();
+      if (!token) {
+        setValues(prev => ({ ...prev, error: "Authentication required" }));
+        return;
       }
-    };
 
+      // Connect to WebSocket
+      await webSocketService.connect(token);
+      
+      // Start video streaming
+      const stream = await webSocketService.startVideoStreaming();
+      
+      setValues(prev => ({
+        ...prev,
+        isCameraOne: true,
+      }));
+
+      // Set video source for display
+      if (document.getElementById("cam")) {
+        document.getElementById("cam").srcObject = stream;
+      }
+
+      // Send stream info
+      webSocketService.sendStreamUpdate({
+        testId: id,
+        status: 'preparing',
+        stage: 'instructions'
+      });
+
+    } catch (error) {
+      console.error("Webcam initialization error:", error);
+      let errorMessage = "Camera access denied or not available";
+      
+      if (error.message.includes('Camera access denied')) {
+        errorMessage = "Camera access denied. Please allow camera permissions and refresh the page.";
+      } else if (error.message.includes('No camera found')) {
+        errorMessage = "No camera found. Please connect a camera and try again.";
+      } else if (error.message.includes('Camera is already in use')) {
+        errorMessage = "Camera is already in use by another application. Please close other applications using the camera.";
+      } else if (error.message.includes('HTTPS or localhost')) {
+        errorMessage = "Camera access requires HTTPS or localhost. Please use a secure connection.";
+      } else if (error.message.includes('not supported')) {
+        errorMessage = "Camera access not supported in this browser. Please use a modern browser.";
+      } else if (error.message.includes('WebSocket not connected')) {
+        errorMessage = "Cannot connect to server. Please check your internet connection and try again.";
+      }
+      
+      setValues(prev => ({
+        ...prev,
+        error: errorMessage,
+        isCameraOne: false,
+      }));
+    }
+  };
+
+  useEffect(() => {
     initializeWebcam();
 
     return function cleanup() {
@@ -331,6 +333,23 @@ const Instruction = () => {
                       </div>
                     </div>
                   </div>
+                  {showCameraTest && (
+                    <div className="row" style={{ marginTop: "20px" }}>
+                      <div className="col-md-12">
+                        <CameraTest
+                          onCameraReady={() => {
+                            setValues(prev => ({ ...prev, showCameraTest: false, error: "" }));
+                            document.getElementById("errorText").classList.remove("d-block");
+                            // Retry camera initialization
+                            initializeWebcam();
+                          }}
+                          onError={(errorMsg) => {
+                            setValues(prev => ({ ...prev, error: errorMsg }));
+                          }}
+                        />
+                      </div>
+                    </div>
+                  )}
                 </Paper>
               </Grid>
             </Grid>

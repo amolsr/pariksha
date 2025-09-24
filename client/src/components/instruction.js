@@ -5,6 +5,7 @@ import { Redirect, withRouter, useParams } from "react-router-dom";
 import { isAuthenticated } from "../helper/Auth";
 import { getQuestions, getTestToken } from "../helper/Test";
 import Webcam from "react-webcam";
+import webSocketService from "../helper/WebSocketService";
 import { Box, Button, Container, FormControl, Grid, InputLabel, makeStyles, MenuItem, Paper, Select } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -125,23 +126,52 @@ const Instruction = () => {
   };
 
   useEffect(() => {
-    navigator.mediaDevices
-      .getUserMedia({
-        video: {
-          height: 200,
-          width: 300,
-        },
-        audio: false,
-      })
-      .then((stream) => {
-        setValues((values) => ({
-          ...values,
+    const initializeWebcam = async () => {
+      try {
+        const token = await isAuthenticated();
+        if (!token) {
+          setValues(prev => ({ ...prev, error: "Authentication required" }));
+          return;
+        }
+
+        // Connect to WebSocket
+        await webSocketService.connect(token);
+        
+        // Start video streaming
+        const stream = await webSocketService.startVideoStreaming();
+        
+        setValues(prev => ({
+          ...prev,
           isCameraOne: true,
         }));
-        document.getElementById("cam").srcObject = stream;
-      })
-      .catch((err) => console.log("Error But Y?" + err));
+
+        // Set video source for display
+        if (document.getElementById("cam")) {
+          document.getElementById("cam").srcObject = stream;
+        }
+
+        // Send stream info
+        webSocketService.sendStreamUpdate({
+          testId: id,
+          status: 'preparing',
+          stage: 'instructions'
+        });
+
+      } catch (error) {
+        console.error("Webcam initialization error:", error);
+        setValues(prev => ({
+          ...prev,
+          error: "Camera access denied or not available",
+          isCameraOne: false,
+        }));
+      }
+    };
+
+    initializeWebcam();
+
     return function cleanup() {
+      webSocketService.stopVideoStreaming();
+      webSocketService.disconnect();
       localStorage.removeItem("optional")
       localStorage.removeItem("mandatoryCategory")
     };

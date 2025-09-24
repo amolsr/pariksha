@@ -175,7 +175,7 @@ const Instruction = () => {
       localStorage.removeItem("optional")
       localStorage.removeItem("mandatoryCategory")
     };
-  }, []);
+  }, [id]);
 
   const classes = useStyles();
 

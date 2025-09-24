@@ -13,7 +13,6 @@ import { Paper, Button } from "@material-ui/core";
 import { withRouter } from "react-router";
 const Questions = (props) => {
 
-  const videoRef = useRef(null);
 
   const [time, setTime] = useState({
     hour: JSON.parse(localStorage.getItem("time")).hour,
@@ -49,7 +48,6 @@ const Questions = (props) => {
     error,
     loading,
     isCameraOne,
-    isStreaming,
     id,
     option,
     save,

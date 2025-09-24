@@ -9,11 +9,9 @@ import {
   Chip,
   IconButton,
   Tooltip,
-  CircularProgress,
-  Snackbar
+  CircularProgress
 } from '@material-ui/core';
 import {
-  Videocam,
   VideocamOff,
   Person,
   Refresh,

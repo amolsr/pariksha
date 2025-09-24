@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button, Typography, Box, Alert } from '@material-ui/core';
+import { Button, Typography, Box, Paper } from '@material-ui/core';
 
 const CameraTest = ({ onCameraReady, onError }) => {
   const [isTesting, setIsTesting] = useState(false);
@@ -65,12 +65,12 @@ const CameraTest = ({ onCameraReady, onError }) => {
 
   if (!cameraSupported) {
     return (
-      <Alert severity="error">
-        <Typography variant="h6">Camera Not Supported</Typography>
-        <Typography>
+      <Paper elevation={2} style={{ padding: 16, backgroundColor: '#ffebee', border: '1px solid #f44336' }}>
+        <Typography variant="h6" style={{ color: '#d32f2f', marginBottom: 8 }}>Camera Not Supported</Typography>
+        <Typography style={{ color: '#d32f2f' }}>
           Your browser doesn't support camera access. Please use a modern browser like Chrome, Firefox, or Safari.
         </Typography>
-      </Alert>
+      </Paper>
     );
   }
 
@@ -81,9 +81,11 @@ const CameraTest = ({ onCameraReady, onError }) => {
       </Typography>
       
       {error && (
-        <Alert severity="error" style={{ marginBottom: 16 }}>
-          {error}
-        </Alert>
+        <Paper elevation={2} style={{ padding: 16, backgroundColor: '#ffebee', border: '1px solid #f44336', marginBottom: 16 }}>
+          <Typography style={{ color: '#d32f2f' }}>
+            {error}
+          </Typography>
+        </Paper>
       )}
       
       <Typography variant="body2" color="textSecondary" paragraph>

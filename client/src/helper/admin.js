@@ -142,7 +142,6 @@ export const addQuestions = (formData) => {
       method: "POST",
       headers: {
         Accept: "application/json",
-        'content-type': 'multipart/form-data',
         authorization: "Bearer " + token,
       },
       body: formData

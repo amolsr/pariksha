@@ -397,9 +397,25 @@ const Questions = (props) => {
         };
       } catch (error) {
         console.error("Webcam initialization error:", error);
+        let errorMessage = "Camera access denied or not available";
+        
+        if (error.message.includes('Camera access denied')) {
+          errorMessage = "Camera access denied. Please allow camera permissions and refresh the page.";
+        } else if (error.message.includes('No camera found')) {
+          errorMessage = "No camera found. Please connect a camera and try again.";
+        } else if (error.message.includes('Camera is already in use')) {
+          errorMessage = "Camera is already in use by another application. Please close other applications using the camera.";
+        } else if (error.message.includes('HTTPS or localhost')) {
+          errorMessage = "Camera access requires HTTPS or localhost. Please use a secure connection.";
+        } else if (error.message.includes('not supported')) {
+          errorMessage = "Camera access not supported in this browser. Please use a modern browser.";
+        } else if (error.message.includes('WebSocket not connected')) {
+          errorMessage = "Cannot connect to server. Please check your internet connection and try again.";
+        }
+        
         setValues(prev => ({
           ...prev,
-          error: "Camera access denied or not available",
+          error: errorMessage,
           isCameraOne: false,
           isStreaming: false,
         }));

@@ -57,6 +57,16 @@ class WebSocketService {
     }
 
     try {
+      // Check if getUserMedia is supported
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        throw new Error('Camera access not supported in this browser');
+      }
+
+      // Check if we're on HTTPS or localhost
+      if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+        throw new Error('Camera access requires HTTPS or localhost');
+      }
+
       // Get user media
       this.stream = await navigator.mediaDevices.getUserMedia({
         video: {
@@ -97,6 +107,20 @@ class WebSocketService {
       return this.stream;
     } catch (error) {
       console.error('Error starting video stream:', error);
+      
+      // Provide more specific error messages
+      if (error.name === 'NotAllowedError') {
+        throw new Error('Camera access denied. Please allow camera permissions and refresh the page.');
+      } else if (error.name === 'NotFoundError') {
+        throw new Error('No camera found. Please connect a camera and try again.');
+      } else if (error.name === 'NotReadableError') {
+        throw new Error('Camera is already in use by another application.');
+      } else if (error.name === 'OverconstrainedError') {
+        throw new Error('Camera constraints cannot be satisfied. Please try a different camera.');
+      } else if (error.name === 'SecurityError') {
+        throw new Error('Camera access blocked due to security restrictions. Please use HTTPS or localhost.');
+      }
+      
       throw error;
     }
   }

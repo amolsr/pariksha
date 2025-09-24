@@ -26,12 +26,16 @@ router.post("/add-question", fileController.uploadImage.single('image'), questio
 router.post("/upload-questions", upload.single("file"), async (req, res, next) => {
     const file = req.file;
     if (!file) {
-      res.sendStatus(422)
-    } else {
-      await UtilController.csvParser(req.file.buffer).then(data => {
-        req.body = data
-        next()
-      }).catch(err => console.log(err));
+      return res.status(422).json({ error: "No file uploaded" });
+    }
+    
+    try {
+      const data = await UtilController.csvParser(req.file.buffer);
+      req.body = data;
+      next();
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json({ error: "Invalid CSV file format", details: err.message });
     }
   }, QuestionController.addAllQuestions)
 //get All Users

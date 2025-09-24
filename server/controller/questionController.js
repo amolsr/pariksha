@@ -233,14 +233,52 @@ exports.addQuestions = async (req, res) => {
 // to add questions
 exports.addAllQuestions = async (req, res) => {
   const questions = req.body;
+  
+  // Validate that questions is an array
+  if (!Array.isArray(questions)) {
+    return res.status(400).json({ 
+      error: "Invalid data format", 
+      details: "Expected an array of questions" 
+    });
+  }
+  
+  // Validate data structure for each question
+  const requiredFields = ['question', 'one', 'two', 'three', 'four', 'correct', 'category'];
+  const invalidQuestions = [];
+  
+  questions.forEach((q, index) => {
+    const missingFields = requiredFields.filter(field => 
+      !q.hasOwnProperty(field) || !q[field] || q[field].toString().trim() === ''
+    );
+    if (missingFields.length > 0) {
+      invalidQuestions.push({
+        row: index + 1,
+        missingFields: missingFields
+      });
+    }
+  });
+  
+  if (invalidQuestions.length > 0) {
+    return res.status(400).json({ 
+      error: "Invalid data format", 
+      details: "Missing required fields in some questions",
+      invalidQuestions: invalidQuestions
+    });
+  }
+  
   try {
     await Question.insertMany(questions);
-    return res.status(200).json({ msg: "Question Saved" });
+    return res.status(200).json({ 
+      success: true,
+      msg: `${questions.length} questions saved successfully` 
+    });
   } catch (err) {
-    if (err) {
-      console.log(err)
-      res.status(500).json({ error: "Server Error" });
-    }
+    console.log(err);
+    return res.status(500).json({ 
+      success: false,
+      error: "Server Error", 
+      details: err.message 
+    });
   }
 };
 

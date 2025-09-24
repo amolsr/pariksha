@@ -10,7 +10,7 @@ import {
   IconButton,
   Tooltip,
   CircularProgress,
-  Alert
+  Snackbar
 } from '@material-ui/core';
 import {
   Videocam,
@@ -340,13 +340,25 @@ const WebcamMonitor = () => {
 
   if (error) {
     return (
-      <Alert severity="error" action={
-        <IconButton onClick={handleRefresh} color="inherit">
-          <Refresh />
-        </IconButton>
-      }>
-        {error}
-      </Alert>
+      <Box className={classes.root}>
+        <Paper 
+          style={{ 
+            padding: 16, 
+            backgroundColor: '#ffebee', 
+            border: '1px solid #f44336',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between'
+          }}
+        >
+          <Typography variant="body1" style={{ color: '#d32f2f' }}>
+            {error}
+          </Typography>
+          <IconButton onClick={handleRefresh} color="inherit">
+            <Refresh />
+          </IconButton>
+        </Paper>
+      </Box>
     );
   }
 

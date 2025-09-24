@@ -60,7 +60,7 @@ exports.getDurationFromTime = (startTime, endTime) => {
 }
 
 exports.csvParser = async (buffer) => {
-  var csvString = buffer;
+  var csvString = buffer.toString('utf8'); // Convert buffer to string
   return new Promise((resolve, reject) => {
     csv.parse(csvString, { columns: true, delimiter: ',' }, function (err, data) {
       if (err) reject(err);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 // import PropTypes from 'prop-types';
 import NavBar from "./nav";
 import { cheatingCounter } from "../helper/Test"
@@ -413,7 +413,7 @@ const Questions = (props) => {
       webSocketService.stopVideoStreaming();
       webSocketService.disconnect();
     };
-  }, []);
+  }, [hour, minute, second, index]);
 
   const questionPaper = () => {
     return (

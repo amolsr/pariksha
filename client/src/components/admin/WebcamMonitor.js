@@ -31,12 +31,12 @@ const useStyles = makeStyles((theme) => ({
   videoCard: {
     position: 'relative',
     marginBottom: theme.spacing(2),
-    minHeight: '300px',
+    minHeight: '250px',
   },
   videoContainer: {
     position: 'relative',
     width: '100%',
-    height: '250px',
+    height: '200px',
     backgroundColor: '#000',
     borderRadius: theme.shape.borderRadius,
     overflow: 'hidden',

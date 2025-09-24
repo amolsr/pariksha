@@ -275,7 +275,7 @@ const Instruction = () => {
                   </div>
                   <div className="row">
                     <div className="col-12">
-                      <Webcam id="cam" style={{ width: "inherit" }} />
+                      <Webcam id="cam" style={{ width: "100%", maxWidth: "320px", height: "240px", margin: "0 auto", display: "block" }} />
                     </div>
                   </div>
                   <div className="row">

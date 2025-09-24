@@ -1,6 +1,6 @@
 import CircularProgress from "@material-ui/core/CircularProgress";
 import NavBar from "./nav";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Redirect, withRouter, useParams } from "react-router-dom";
 import { isAuthenticated } from "../helper/Auth";
 import { getQuestions, getTestToken } from "../helper/Test";
@@ -128,7 +128,7 @@ const Instruction = () => {
     }));
   };
 
-  const initializeWebcam = async () => {
+  const initializeWebcam = useCallback(async () => {
     try {
       const token = await isAuthenticated();
       if (!token) {
@@ -183,7 +183,7 @@ const Instruction = () => {
         isCameraOne: false,
       }));
     }
-  };
+  }, [id]);
 
   useEffect(() => {
     initializeWebcam();
@@ -194,7 +194,7 @@ const Instruction = () => {
       localStorage.removeItem("optional")
       localStorage.removeItem("mandatoryCategory")
     };
-  }, [id]);
+  }, [id, initializeWebcam]);
 
   const classes = useStyles();
 

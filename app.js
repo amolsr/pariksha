@@ -9,7 +9,6 @@ const studentRoute = require("./routes/student");
 const testRoute = require("./routes/test");
 const indexRoute = require("./routes/root");
 const adminRoute = require("./routes/admin");
-const monitorRoute = require("./routes/monitor");
 const { authStudent, authTest, authAdmin } = require("./controller/authController");
 const cors = require("cors");
 
@@ -53,7 +52,6 @@ app.use("/api/", indexRoute);
 app.use("/api/student", authStudent, studentRoute);
 app.use("/api/test", authTest, testRoute);
 app.use("/api/admin",authAdmin, adminRoute);
-app.use("/api/monitor", authAdmin, monitorRoute);
 
 app.use((req, res) => {
   res.status(404).send("404 Not Found");
